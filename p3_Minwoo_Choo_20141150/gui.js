@@ -2,11 +2,11 @@ class Text { // implemented by Minwoo Choo
   constructor(t, sz, xp, yp, c, font) {
     this._text = createGraphics(window.innerWidth - 4, window.innerHeight - 4);
     this._text.content = t; // content of text
-    this._text.fontSize = sz; // font size
+    this._text.textSize(sz); // font size
     this._text.x = xp; // position
     this._text.y = yp;
-    this._text.fontColor = c; // font color
-    this._text.fontFamily = font; // font family
+    this._text.fill(c); // font color
+    this._text.textFont(font); // font family
     this._text.alignCenter = false;
   }
 
@@ -15,7 +15,7 @@ class Text { // implemented by Minwoo Choo
   }
 
   setSize(sz) {
-    this._text.fontSize = sz;
+    this._text.textSize(sz);
   }
 
   setPosition(xp, yp) {
@@ -24,14 +24,11 @@ class Text { // implemented by Minwoo Choo
   }
 
   setColor(c) {
-    this._text.fontColor = c;
+    this._text.fill(c);
   }
 
   display() {
     push();
-    this._text.textFont(this._text.fontFamily);
-    this._text.textSize(this._text.fontSize);
-    this._text.fill(this._text.fontColor);
     this._text.text(this._text.content, this._text.x, this._text.y);
     texture(this._text);
     plane(window.innerWidth - 4, window.innerHeight - 4);
