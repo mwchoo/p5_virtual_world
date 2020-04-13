@@ -6,6 +6,7 @@ AAT4001: Project 3 - Procedural Modeling of a Virtual World using p5.js
 
 Chrome/Edge Browser (not IE, Firefox, Safari)
 External GPU (↑ GTX 1650)
+Minimum Full HD(1920 x 1080) resolution or Higher (Based on DPI Scailing 100%)
 ```
 
 ## Description
