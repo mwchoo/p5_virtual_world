@@ -9,6 +9,4 @@ External GPU (↑ GTX 1650)
 ```
 
 ## Demo
-```
 [https://mwchoo.github.io/AAT4001/p3/index.html](https://mwchoo.github.io/AAT4001/p3/index.html)
-```
