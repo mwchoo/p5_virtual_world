@@ -29,6 +29,10 @@ class Text { // implemented by Minwoo Choo
 
   display() {
     push();
+    this._text.redraw();
+    this._text.clear();
+    this._text.noStroke();
+    //this._text.background(0);
     this._text.text(this._text.content, this._text.x, this._text.y);
     texture(this._text);
     plane(window.innerWidth - 4, window.innerHeight - 4);

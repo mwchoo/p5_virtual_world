@@ -6,12 +6,16 @@
 let scene = 0;
 
 let font_georgia;
+let font_game;
 let coronaImg;
 let disinfectantImg;
 let cgSplashName;
 let cgCoronaCnt;
 let cgPov;
+let cgScore;
+let cgPandemic;
 let rot = 0;
+let score = 0;
 let sc = 0.2;
 let scene_timer;
 
@@ -29,6 +33,7 @@ const typeOfObj = ['building', 'corona'];
 
 function preload() {
   font_georgia = loadFont('assets/georgia.ttf');
+  font_game = loadFont('assets/game.ttf');
 }
 
 function setup() {
@@ -41,6 +46,8 @@ function setup() {
   //cgSplashName = new Text("Corona Extra", 100, windowWidth/2 - 300, windowHeight/2 - 70, color(195, 56, 51, 1), font_georgia);
   cgCoronaCnt = new Text("Num of Corona", 20, 150, 40, color(195, 56, 51, 1), font_georgia);
   cgPov = new Text("POV", 20, 150, 65, color(240, 240, 240, 1), font_georgia);
+  cgScore = new Text("Score  0", 40, 20, 110, color(240, 240, 240, 1), font_game);
+  cgPandemic = new Text("Pandemic", 100, windowWidth/2 - 200, windowHeight/2, color(195, 56, 51, 1), font_georgia);
 
   //scene_timer = new Timer(3000, handleScene);
 
@@ -85,22 +92,28 @@ function draw() {
       disinfectant[i].splash();
       image(disinfectantImg, 400, -500);
     }
-    if (coronaCnt > 1) {
-      coronaCnt -= 2;
+    if (coronaCnt > 4) {
+      coronaCnt -= 4;
+      score += parseInt(random(2, 100));
+      cgScore.setText("Score  " + score.toString());
     }
   } else {
     if (coronaCnt < 300) {
-      coronaCnt += 1;
+      coronaCnt += 2;
     } else {
       background(250, 0, 0);
+      cgPandemic.display();
     }
   }
 
   building_sl.value(coronaCnt);
 
+  // draw score and the num of corona virus
   cgCoronaCnt.display();
   cgPov.display();
+  cgScore.display();
   push();
+
   //translate(150, 40, 0);
   /*
   textSize(20);
@@ -110,8 +123,6 @@ function draw() {
   text('POV', 20, 150, 65);
   pop();
   */
-
-  // draw score and the num of corona virus
 }
 
 function mousePressed() {

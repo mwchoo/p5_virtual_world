@@ -1,4 +1,4 @@
-class Corona {
+class Corona {  // implemented by Minwoo Choo
   constructor(sz, x, y, z) {
     this.sz = sz;
     this.x = x;
@@ -72,9 +72,7 @@ function drawCorona(sz) {
   randomSeed(4);
 
   // draw covid-19
-  //fill(80);
   noStroke();
-  //ambientMaterial('rgb(80, 80, 80)');
   ambientMaterial('rgb(40, 40, 40)');
   sphere(100 * sz);
   /*
