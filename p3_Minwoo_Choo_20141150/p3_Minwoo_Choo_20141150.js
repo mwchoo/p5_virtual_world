@@ -4,6 +4,9 @@
 */
 
 let scene = 0;
+let sound_bgm;
+let sound_spray;
+let sound_pandemic;
 
 let font_georgia;
 let font_game;
@@ -34,6 +37,9 @@ const typeOfObj = ['building', 'corona'];
 function preload() {
   font_georgia = loadFont('assets/georgia.ttf');
   font_game = loadFont('assets/game.ttf');
+  sound_bgm = loadSound('assets/bgm.mp3');
+  sound_spray = loadSound('assets/spray.mp3');
+  sound_pandemic = loadSound('assets/pandemic.mp3');
 }
 
 function setup() {
@@ -71,6 +77,7 @@ function setup() {
   for (i = 0; i < 100; i++) {
     disinfectant[i] = new Rain(random(-400, 400), random(0, -3000), random(-500, 300));
   }
+  sound_bgm.play();
 }
 
 function draw() {
@@ -84,6 +91,11 @@ function draw() {
     return;
   }
 
+  // bgm control
+  if (!sound_bgm.isPlaying()) {
+    sound_bgm.play();
+  }
+
   drawBuildings();
   //covid.display();
   if (disinfectantDrop) {
@@ -92,7 +104,7 @@ function draw() {
       disinfectant[i].splash();
       image(disinfectantImg, 400, -500);
     }
-    if (coronaCnt > 4) {
+    if (coronaCnt >= 4) {
       coronaCnt -= 4;
       score += parseInt(random(2, 100));
       cgScore.setText("Score  " + score.toString());
@@ -103,6 +115,12 @@ function draw() {
     } else {
       background(250, 0, 0);
       cgPandemic.display();
+      if (sound_bgm.isPlaying()) {
+        sound_bgm.stop();
+      }
+      if (!sound_pandemic.isPlaying()) {
+        sound_pandemic.play();
+      }
     }
   }
 
@@ -113,23 +131,15 @@ function draw() {
   cgPov.display();
   cgScore.display();
   push();
-
-  //translate(150, 40, 0);
-  /*
-  textSize(20);
-  textFont(font_georgia);
-  fill(195, 56, 51);
-  text('Num of Corona', 20, 150, 40);
-  text('POV', 20, 150, 65);
-  pop();
-  */
 }
 
 function mousePressed() {
   // kill COVID-19 virus
   disinfectantDrop = true;
+  sound_spray.play();
 }
 
 function mouseReleased() {
   disinfectantDrop = false;
+  sound_spray.stop();
 }
