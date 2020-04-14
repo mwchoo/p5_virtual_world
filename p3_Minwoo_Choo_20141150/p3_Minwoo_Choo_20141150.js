@@ -77,7 +77,6 @@ function setup() {
   for (i = 0; i < 100; i++) {
     disinfectant[i] = new Rain(random(-400, 400), random(0, -3000), random(-500, 300));
   }
-  sound_bgm.play();
 }
 
 function draw() {
